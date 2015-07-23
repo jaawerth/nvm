@@ -130,7 +130,7 @@ nvm_detect_profile() {
       DETECTED_PROFILE="$HOME/.bash_profile"
     fi
   elif [ $SHELLTYPE = "zsh" ]; then
-    DETECTED_PROFILE="$HOME/.zshrc"
+    DETECTED_PROFILE="$HOME/.zshenv"
   fi
 
   if [ -z $DETECTED_PROFILE ]; then
@@ -142,8 +142,8 @@ nvm_detect_profile() {
       DETECTED_PROFILE="$HOME/.bashrc"
     elif [ -f "$HOME/.bash_profile" ]; then
       DETECTED_PROFILE="$HOME/.bash_profile"
-    elif [ -f "$HOME/.zshrc" ]; then
-      DETECTED_PROFILE="$HOME/.zshrc"
+    elif [ -f "$HOME/.zshenv" ]; then
+      DETECTED_PROFILE="$HOME/.zshenv"
     fi
   fi
 
@@ -232,7 +232,7 @@ nvm_do_install() {
   SOURCE_STR="\nexport NVM_DIR=\"$NVM_DIR\"\n[ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\"  # This loads nvm"
 
   if [ -z "$NVM_PROFILE" ] ; then
-    echo "=> Profile not found. Tried $NVM_PROFILE (as defined in \$PROFILE), ~/.bashrc, ~/.bash_profile, ~/.zshrc, and ~/.profile."
+    echo "=> Profile not found. Tried $NVM_PROFILE (as defined in \$PROFILE), ~/.bashrc, ~/.bash_profile, ~/.zshenv, and ~/.profile."
     echo "=> Create one of them and run this script again"
     echo "=> Create it (touch $NVM_PROFILE) and run this script again"
     echo "   OR"
