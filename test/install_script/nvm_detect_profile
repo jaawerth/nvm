@@ -3,7 +3,7 @@
 cleanup () {
   unset -f setup cleanup die
   unset _PROFILE
-  rm -f .bashrc .bash_profile .zshrc .profile test_profile > /dev/null 2>&1
+  rm -f .bashrc .bash_profile .zshenv .profile test_profile > /dev/null 2>&1
 }
 die () { echo $@ ; cleanup ; exit 1; }
 
@@ -12,7 +12,7 @@ NVM_ENV=testing . ../../install.sh
 setup () {
   touch .bashrc
   touch .bash_profile
-  touch .zshrc
+  touch .zshenv
   touch .profile
   touch test_profile
 }
@@ -34,11 +34,11 @@ _PROFILE=$(nvm_detect_profile)
 #Let's force $SHELL to be zsh
 SHELL="/usr/bin/zsh"
 
-# $SHELL is set to zsh and .zshrc is there, it must be detected
+# $SHELL is set to zsh and .zshenv is there, it must be detected
 _PROFILE=$(nvm_detect_profile)
-[ "_$_PROFILE" = "_$HOME/.zshrc" ] || echo "_\$HOME/.zshrc: _$HOME/.zshrc\n" \
+[ "_$_PROFILE" = "_$HOME/.zshenv" ] || echo "_\$HOME/.zshenv: _$HOME/.zshenv\n" \
                                       echo "_\$_PROFILE: _$_PROFILE\n" \
-                                      die "nvm_detect_profile didn't pick $SHELL and $HOME/.zshrc"
+                                      die "nvm_detect_profile didn't pick $SHELL and $HOME/.zshenv"
 
 
 # if we unset shell it looks for the files
@@ -84,13 +84,13 @@ _PROFILE=$(nvm_detect_profile)
                                              die "nvm_detect_profile should have selected .bash_profile"
 
 rm .bash_profile
-# Otherwise, it should favor .zshrc if file exists
+# Otherwise, it should favor .zshenv if file exists
 _PROFILE=$(nvm_detect_profile)
-[ "_$_PROFILE" = "_$HOME/.zshrc" ] || echo "_\$_PROFILE: _$_PROFILE\n" \
+[ "_$_PROFILE" = "_$HOME/.zshenv" ] || echo "_\$_PROFILE: _$_PROFILE\n" \
                                       echo "_\$PROFILE: _$PROFILE\n" \
-                                      die "nvm_detect_profile should have selected .zshrc"
+                                      die "nvm_detect_profile should have selected .zshenv"
 
-rm .zshrc
+rm .zshenv
 # It should be empty if none is found
 _PROFILE=$(nvm_detect_profile)
 [ -z "$_PROFILE" ] || echo "_\$_PROFILE: _$_PROFILE\n" \

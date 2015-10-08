@@ -21,7 +21,7 @@ or Wget:
 
     wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | bash
 
-<sub>The script clones the nvm repository to `~/.nvm` and adds the source line to your profile (`~/.bash_profile`, `~/.zshrc` or `~/.profile`).</sub>
+<sub>The script clones the nvm repository to `~/.nvm` and adds the source line to your profile (`~/.bash_profile`, `~/.zshenv` or `~/.profile`).</sub>
 
 You can customize the install source, directory and profile using the `NVM_SOURCE`, `NVM_DIR`, and `PROFILE` variables.
 Eg: `curl ... | NVM_DIR=/usr/local/nvm bash` for a global install.
@@ -40,7 +40,7 @@ To activate nvm, you need to source it from your shell:
 
     . ~/.nvm/nvm.sh
 
-I always add this line to my `~/.bashrc`, `~/.profile`, or `~/.zshrc` file to have it automatically sourced upon login.
+I always add this line to my `~/.bashrc`, `~/.profile`, or `~/.zshenv` file to have it automatically sourced upon login.
 Often I also put in a line to use a specific version of node.
 
 ## Usage
