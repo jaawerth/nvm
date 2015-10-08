@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 { # this ensures the entire script is downloaded #
 
 nvm_has() {
@@ -13,7 +11,7 @@ if [ -z "$NVM_DIR" ]; then
 fi
 
 nvm_latest_version() {
-  echo "v0.25.4"
+  echo "v0.28.0"
 }
 
 #
@@ -240,7 +238,7 @@ nvm_do_install() {
     printf "$SOURCE_STR"
     echo
   else
-    if ! grep -qc 'nvm.sh' "$NVM_PROFILE"; then
+    if ! command grep -qc '/nvm.sh' "$NVM_PROFILE"; then
       echo "=> Appending source string to $NVM_PROFILE"
       printf "$SOURCE_STR\n" >> "$NVM_PROFILE"
     else
@@ -249,9 +247,8 @@ nvm_do_install() {
   fi
 
   nvm_check_global_modules
-  
-  . $NVM_DIR/nvm.sh
-  echo "=> You can now start using nvm"
+
+  echo "=> Close and reopen your terminal to start using nvm"
   nvm_reset
 }
 

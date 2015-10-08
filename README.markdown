@@ -4,23 +4,22 @@
 
 First you'll need to make sure your system has a c++ compiler. For OSX, XCode will work, for Ubuntu, the build-essential and libssl-dev packages work.
 
-Note: `nvm` does not support Windows (see [#284](https://github.com/creationix/nvm/issues/284)). Two alternatives exist, which are not supported nor developed by us:
+Note: `nvm` does not support Windows (see [#284](https://github.com/creationix/nvm/issues/284)). Two alternatives exist, which are neither supported nor developed by us:
  - [nvmw](https://github.com/hakobera/nvmw)
  - [nvm-windows](https://github.com/coreybutler/nvm-windows)
 
-Note: `nvm` does not support [Fish] either (see [#303](https://github.com/creationix/nvm/issues/303)). Two alternatives exist, which are not supported nor developed by us:
- - [nvm-fish-wrapper](https://github.com/passcod/nvm-fish-wrapper)
- - [nvm-fish](https://github.com/Alex7Kom/nvm-fish) (does not support iojs)
+Note: `nvm` does not support [Fish] either (see [#303](https://github.com/creationix/nvm/issues/303)). An alternative exists, which is neither supported nor developed by us:
+ - [bass](https://github.com/edc/bass) allows to use utilities written for Bash in fish shell
 
 ### Install script
 
-To install you could use the [install script][2] using cURL:
+To install or update nvm, you can use the [install script][2] using cURL:
 
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | bash
 
 or Wget:
 
-    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | bash
 
 <sub>The script clones the nvm repository to `~/.nvm` and adds the source line to your profile (`~/.bash_profile`, `~/.zshrc` or `~/.profile`).</sub>
 
@@ -76,9 +75,26 @@ In place of a version pointer like "0.10", you can use the special default alias
     nvm use stable
     nvm run unstable --version
 
+If you want to install a new version of Node.js and migrate npm packages from a previous version:
+
+    nvm install node --reinstall-packages-from=node
+
+This will first use "nvm version node" to identify the current version you're migrating packages from. Then it resolves the new version to install from the remote server and installs it. Lastly, it runs "nvm reinstall-packages" to reinstall the npm packages from your prior version of Node to the new one.
+
+You can also install and migrate npm packages from specific versions of Node like this:
+
+    nvm install v0.10.40 --reinstall-packages-from=0.10.39
+    nvm install v0.12.7 --reinstall-packages-from=0.12.6
+
 If you want to install [io.js](https://github.com/iojs/io.js/):
 
     nvm install iojs
+
+If you want to install a new version of io.js and migrate npm packages from a previous version:
+
+    nvm install iojs --reinstall-packages-from=iojs
+
+The same guidelines mentioned for migrating npm packages in Node.js are applicable to io.js.
 
 If you want to use the system-installed version of node, you can use the special default alias "system":
 
@@ -220,7 +236,7 @@ After the v0.8.6 release of node, nvm tries to install from binary packages. But
     nvm install -s 0.8.6
 
 [1]: https://github.com/creationix/nvm.git
-[2]: https://github.com/creationix/nvm/blob/v0.25.4/install.sh
+[2]: https://github.com/creationix/nvm/blob/v0.28.0/install.sh
 [3]: https://travis-ci.org/creationix/nvm
 [Urchin]: https://github.com/scraperwiki/urchin
 [Fish]: http://fishshell.com
