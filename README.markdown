@@ -8,18 +8,19 @@ Note: `nvm` does not support Windows (see [#284](https://github.com/creationix/n
  - [nvmw](https://github.com/hakobera/nvmw)
  - [nvm-windows](https://github.com/coreybutler/nvm-windows)
 
-Note: `nvm` does not support [Fish] either (see [#303](https://github.com/creationix/nvm/issues/303)). An alternative exists, which is neither supported nor developed by us:
+Note: `nvm` does not support [Fish] either (see [#303](https://github.com/creationix/nvm/issues/303)). Alternatives exist, which are neither supported nor developed by us:
+ - [nvm](https://github.com/derekstavis/plugin-nvm) plugin for [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish), which makes nvm and its completions available in fish shell
  - [bass](https://github.com/edc/bass) allows to use utilities written for Bash in fish shell
 
 ### Install script
 
 To install or update nvm, you can use the [install script][2] using cURL:
 
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 
 or Wget:
 
-    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | bash
+    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 
 <sub>The script clones the nvm repository to `~/.nvm` and adds the source line to your profile (`~/.bash_profile`, `~/.zshenv` or `~/.profile`).</sub>
 
@@ -216,6 +217,10 @@ Environment Variables:
 $NPM_CONFIG_PREFIX
 $PREFIX
 ```
+Shell settings:
+```
+set -e
+```
 
 ## Problems
 
@@ -236,7 +241,7 @@ After the v0.8.6 release of node, nvm tries to install from binary packages. But
     nvm install -s 0.8.6
 
 [1]: https://github.com/creationix/nvm.git
-[2]: https://github.com/creationix/nvm/blob/v0.28.0/install.sh
+[2]: https://github.com/creationix/nvm/blob/v0.29.0/install.sh
 [3]: https://travis-ci.org/creationix/nvm
 [Urchin]: https://github.com/scraperwiki/urchin
 [Fish]: http://fishshell.com
